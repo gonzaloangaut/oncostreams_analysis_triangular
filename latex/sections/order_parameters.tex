@@ -1,0 +1,184 @@
+\section{Order Parameters}
+
+To characterize the orientational organization of elongated cells, the following global order parameters are recorded.
+
+The global nematic order is defined as
+\begin{equation}
+    Q_{E,\mathrm{elongated}}(t)
+    =
+    \frac{1}{N_E(t)}
+    \sqrt{
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \sin\left(2\varphi_i(t)\right)
+        \right]^2
+        +
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \cos\left(2\varphi_i(t)\right)
+        \right]^2
+    }.
+\end{equation}
+
+The global polar order is defined as
+\begin{equation}
+    P_{E,\mathrm{elongated}}(t)
+    =
+    \frac{1}{N_E(t)}
+    \sqrt{
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \sin\left(\varphi_i(t)\right)
+        \right]^2
+        +
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \cos\left(\varphi_i(t)\right)
+        \right]^2
+    }.
+\end{equation}
+
+We also calculate the parameters normalized by the total number of cells:
+\begin{equation}
+    Q_{E,\mathrm{total}}(t)
+    =
+    \frac{1}{N}
+    \sqrt{
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \sin\left(2\varphi_i(t)\right)
+        \right]^2
+        +
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \cos\left(2\varphi_i(t)\right)
+        \right]^2
+    },
+\end{equation}
+and
+\begin{equation}
+    P_{E,\mathrm{total}}(t)
+    =
+    \frac{1}{N}
+    \sqrt{
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \sin\left(\varphi_i(t)\right)
+        \right]^2
+        +
+        \left[
+            \sum_{i\in\mathcal{E}(t)}
+            \cos\left(\varphi_i(t)\right)
+        \right]^2
+    }.
+\end{equation}
+
+The phenotypic composition is characterized by
+\begin{equation}
+    f_E(t)
+    =
+    \frac{N_E(t)}{N}.
+\end{equation}
+
+These quantities satisfy
+\begin{equation}
+    P_{E,\mathrm{total}}(t)
+    =
+    f_E(t)P_{E,\mathrm{elongated}}(t),
+    \qquad
+    Q_{E,\mathrm{total}}(t)
+    =
+    f_E(t)Q_{E,\mathrm{elongated}}(t).
+\end{equation}
+
+When $N_E(t)=0$, the order parameters normalized by the elongated population are set to zero.
+
+
+\subsection{Time evolution of order parameters}
+
+We first analyze the time evolution of the order parameters.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{order_parameters_over_time.png}
+    \caption{Time evolution of the elongated fraction and orientational order parameters for the different densities. Curves are averaged over independent realizations.}
+    \label{fig:op_time}
+\end{figure}
+
+$f_E$ increases progressively from the initially round configuration. For lower densities, a substantial fraction of the population becomes elongated, while the elongated fraction is strongly suppressed at the highest densities.
+
+$P_{E,\mathrm{total}}$ and $Q_{E,\mathrm{total}}$ show the same suppression at high density, indicating that collective orientational order becomes macroscopically small when elongation is inhibited.
+
+$P_{E,\mathrm{elongated}}$ and $Q_{E,\mathrm{elongated}}$ remain finite whenever an elongated subpopulation is present. At very early times, these quantities should be interpreted with caution because $N_E$ is still very small.
+
+
+\subsection{Steady state}
+
+To obtain a more stable estimate of the order parameters and compare their dependence on density, we average each observable over the final $10\%$ of each realization. We first perform the temporal average independently for each seed and then average over realizations.
+
+At this stage, the final $10\%$ is used as a late-time averaging window rather than assuming that all realizations have reached a fully stationary state. Longer simulations will be used to assess convergence.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{steady_state_order_parameters.png}
+    \caption{Late-time order parameters as a function of density. Each point is obtained by first averaging over the final $10\%$ of each realization and then averaging over realizations.}
+    \label{fig:op_density}
+\end{figure}
+
+The late-time $f_E$ remains relatively large at lower densities and decreases sharply between $\rho=0.85$ and $\rho=0.86$. A similar decrease is observed for $P_{E,\mathrm{total}}$ and $Q_{E,\mathrm{total}}$.
+
+Among the quantities considered here, $f_E$ provides the most direct measure of the morphological state of the system and will therefore be used as the primary observable to characterize the transition.
+
+
+\subsection{Susceptibility}
+
+To quantify the fluctuations of the elongated fraction, we define its susceptibility as
+\begin{equation}
+    \chi_{f_E}
+    =
+    N_{\mathrm{actual}}
+    \left[
+        \left\langle f_E^2 \right\rangle
+        -
+        \left\langle f_E \right\rangle^2
+    \right].
+\end{equation}
+
+The temporal moments are first evaluated within the late-time window for each realization and are subsequently averaged over seeds.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{susceptibility_of_elongated_fraction.png}
+    \caption{Susceptibility of the elongated fraction as a function of density for $N=10000$.}
+    \label{fig:fe_susceptibility}
+\end{figure}
+
+For $N=10000$, the susceptibility displays a pronounced maximum at $\rho=0.86$, coinciding with the region where the late-time elongated fraction decreases sharply. We therefore use the susceptibility maximum as a reference point to inspect the fluctuations and the distribution of $f_E$ near the transition.
+
+
+\subsection{Elongated-fraction distributions near the susceptibility peak}
+
+To investigate the origin of the enhanced fluctuations, we examine the distribution of the late-time averaged elongated fraction, $\langle f_E\rangle_t$, across independent realizations. We consider the density corresponding to the susceptibility maximum together with the immediately neighboring sampled densities.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{elongated_fraction_distributions_near_susceptibility_peak.png}
+    \caption{Distribution across independent realizations of the late-time averaged elongated fraction near the susceptibility maximum.}
+    \label{fig:fe_distributions}
+\end{figure}
+
+At $\rho=0.85$, most realizations retain a substantial elongated population, although realizations with very small $f_E$ are already present. At $\rho=0.86$, realizations with $f_E\approx0$ coexist with others retaining a finite elongated fraction. At $\rho=0.87$, most realizations belong to the low-$f_E$ branch, while a small number remain strongly elongated.
+
+
+\subsection{Individual realizations near the susceptibility peak}
+
+To determine whether the broad distribution near the susceptibility maximum originates from distinct dynamical behaviors, we inspect the time evolution of $f_E$ for each independent realization at $\rho=0.86$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{elongated_fraction_individual_seeds_rho_0.86.png}
+    \caption{Time evolution of the elongated fraction for individual realizations at $\rho=0.86$.}
+    \label{fig:fe_individual}
+\end{figure}
+
+The individual trajectories show a strong separation between realizations. Several remain close to the fully round state, whereas others develop and retain a substantial elongated population.

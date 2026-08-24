@@ -4,4 +4,4 @@ This repository contains tools for analyzing the results of oncostream simulatio
 
 The complete simulation data—including final states, OVITO files, and evolution movies—are available in the following Google Drive folder:
 
-[**Simulation data and visualization files**]([GOOGLE_DRIVE_LINK](https://drive.google.com/drive/u/1/folders/1DpITa_ahFrTESMT-57LJZlTIGnTG7V25))
+[**Simulation data and visualization files**](https://drive.google.com/drive/u/1/folders/1DpITa_ahFrTESMT-57LJZlTIGnTG7V25)

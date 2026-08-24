@@ -1,0 +1,259 @@
+\section{Cluster analysis}
+
+To characterize the spatial organization of the system, clusters are identified independently for round and elongated cells. Two cells are considered connected when they belong to the same phenotype and interact significantly according to the same overlap criterion used in the dynamics. Connectivity is transitive, and clusters are reconstructed independently for each saved configuration. Isolated cells are therefore retained as clusters of size one.
+
+For each phenotype $\alpha\in\{R,E\}$, we denote by $N_\alpha$ the number of cells belonging to that phenotype and by $S_{1,\alpha}$ and $S_{2,\alpha}$ the sizes of the largest and second-largest clusters, respectively.
+
+The size of the largest cluster can be normalized either by the total number of cells,
+
+\[
+\frac{S_{1,\alpha}}{N},
+\]
+
+or by the number of cells belonging to the corresponding phenotype,
+
+\[
+\frac{S_{1,\alpha}}{N_\alpha}.
+\]
+
+These quantities provide complementary information. The first measures the fraction of the entire system contained in the largest cluster of phenotype $\alpha$, whereas the second measures how strongly the population of that phenotype is organized into a single connected structure.
+
+They are related through
+
+\[
+\frac{S_{1,\alpha}}{N}
+=
+\frac{N_\alpha}{N}
+\frac{S_{1,\alpha}}{N_\alpha}.
+\]
+
+Thus, changes in the macroscopic size of a cluster may arise either from changes in the abundance of a phenotype or from changes in its internal spatial organization.
+
+To quantify the relative dominance of the largest cluster over the second-largest one, we define
+
+\[
+\psi_\alpha
+=
+\frac{S_{1,\alpha}-S_{2,\alpha}}
+{S_{1,\alpha}+S_{2,\alpha}}.
+\]
+
+Values of $\psi_\alpha$ close to one indicate a strongly dominant largest cluster, whereas smaller values indicate that the two largest structures have comparable sizes.
+
+In addition to the largest clusters, we analyze the fragmentation of each population through the number of clusters, the fraction of isolated cells, and the distribution of finite-cluster sizes. For elongated clusters, their internal polar and nematic order are also available, together with observables describing the collective motion of each cluster.
+
+
+\subsection{Time evolution of cluster structure}
+
+We first study how the cluster structure develops from the initially round configuration.
+
+For each phenotype, the fraction of the total system contained in its largest cluster can be written as
+
+\[
+\frac{S_{1,\alpha}}{N}
+=
+\frac{N_\alpha}{N}
+\frac{S_{1,\alpha}}{N_\alpha}.
+\]
+
+This decomposition allows us to distinguish two contributions to the growth or disappearance of a macroscopic cluster: changes in the abundance of the corresponding phenotype, $N_\alpha/N$, and changes in the connectivity of that population, measured by $S_{1,\alpha}/N_\alpha$.
+
+We therefore examine the time evolution of these quantities separately for round and elongated cells.
+
+We start plotting $\frac{S_{1,\alpha}}{N}$:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{largest_cluster_over_time.png}
+\end{figure}
+
+For elongated cells, the fraction of the total system contained in the largest cluster decreases at the highest densities. This behavior is expected to be closely related to the suppression of the elongated population observed previously through $f_E$.
+
+The behavior of round cells is qualitatively different. Although $S_{1,R}/N$ initially increases with density (compare $\rho=0.80$ and $\rho=0.85$), it decreases again for the highest densities, particularly around $\rho=0.86$ and $\rho=0.87$. This is not simply explained by the phenotypic composition, since these densities correspond to systems dominated by round cells.
+
+This suggests that a high fraction of round cells does not necessarily imply that they form a single macroscopic connected structure. In particular, the suppression of elongation at high density may result from geometric constraints even in the absence of a dominant interacting cluster of round cells.
+
+To separate changes in phenotypic abundance from changes in connectivity, we now examine $N_\alpha/N$ and $S_{1,\alpha}/N_\alpha$ independently.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{phenotype_abundance_and_cluster_connectivity_over_time.png}
+\end{figure}
+
+The decomposition shows that phenotypic abundance and cluster connectivity behave quite differently.
+
+For round cells, $N_R/N$ increases strongly with density, but at the highest densities $S_{1,R}/N_R$ decreases. So even though most cells are round, they do not form a large interacting cluster according to our current definition.
+
+My guess is that elongation is still blocked by crowding and spatial constraints, even without a giant interaction-based cluster. If we used a more geometric cluster definition, for example connecting cells within a distance $R$, we might actually recover a giant cluster in this regime.
+
+For elongated cells, most of the density dependence comes from $N_E/N$. When a substantial elongated population exists, a large fraction of it usually belongs to the largest elongated cluster.
+
+So the decrease of $S_{1,E}/N$ at high density seems to be mainly due to the disappearance of elongated cells, rather than to strong fragmentation of the elongated population.
+
+At very early times, and also at the highest densities, $S_{1,E}/N_E$ should be interpreted carefully because $N_E$ is very small.
+
+
+\subsection{Steady state cluster structure}
+
+\subsubsection{Largest cluster size}
+
+To compare the cluster structure between densities, we average the cluster observables over the final $10\%$ of each realization. As in the order-parameter analysis, this window is used to obtain more stable late-time estimates without assuming that every realization has reached a fully stationary state.
+
+We first average over time independently for each seed, and then average over realizations.
+
+We first consider the fraction of the whole system contained in the largest cluster of each phenotype,
+
+\[
+\frac{S_{1,\alpha}}{N}.
+\]
+
+This gives a direct measure of the macroscopic importance of the largest round and elongated structures as density is varied.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{largest_cluster_size.png}
+\end{figure}
+
+
+\subsubsection{Largest-cluster dominance}
+
+The size of the largest cluster does not tell us whether it is clearly dominant over the remaining structures. We therefore also consider
+
+\[
+\psi_\alpha
+=
+\frac{S_{1,\alpha}-S_{2,\alpha}}
+{S_{1,\alpha}+S_{2,\alpha}}.
+\]
+
+A value close to one corresponds to a clearly dominant largest cluster, while smaller values indicate that the two largest clusters have more comparable sizes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{largest_cluster_dominance.png}
+\end{figure}
+
+For elongated cells, $\psi_E$ remains relatively large over the whole density range, suggesting that the largest elongated cluster is usually clearly dominant over the second-largest one.
+
+For round cells, $\psi_R$ decreases strongly at $\rho=0.86$ and $\rho=0.87$. Together with the decrease of $S_{1,R}/N_R$, this suggests that the round population becomes less dominated by a single connected structure at high density.
+
+However, $\psi_R$ alone does not tell us whether this corresponds to a few comparable clusters or to fragmentation into many smaller clusters. To check this, we next look at the number of clusters.
+
+
+\subsection{Fragmentation}
+
+The previous results suggest that the round population becomes less dominated by a single connected structure at high density. We now ask whether this corresponds to a fragmentation into a larger number of clusters.
+
+
+\subsubsection{Time evolution of the number of clusters}
+
+We first look at the total number of clusters, $N_c^\alpha$, for each phenotype as a function of time.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{number_of_clusters_over_time.png}
+\end{figure}
+
+The number of clusters shows a strong change in the organization of the round population.
+
+At lower densities, the number of round clusters initially increases but then decreases strongly as the system evolves. Around $\rho=0.85$ and especially $\rho=0.86$, many more round clusters remain at late times. In particular, at $\rho=0.86$ the number of round clusters continues increasing during most of the simulation, which is consistent with the low values of $S_{1,R}/N_R$ and $\psi_R$ found before.
+
+Interestingly, $\rho=0.87$ contains fewer round clusters than $\rho=0.86$, even though the round fraction is larger. This suggests that the strongest fragmentation may occur around the transition region rather than simply increasing with density.
+
+For elongated cells, the number of clusters decreases strongly at high density. However, this is partly expected because the total elongated population also becomes very small, so the raw number of clusters alone is not enough to quantify their fragmentation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{late-time_cluster_fragmentation.png}
+\end{figure}
+
+The fragmentation of the round population changes strongly with density.
+
+At lower densities, where a large elongated population develops, the round cells form relatively few clusters and a large fraction of them belongs to the largest one. One possibility is that the motion and organization of the elongated cells pushes the remaining round cells together, helping them form a larger connected structure.
+
+Around $\rho=0.86$, the situation changes strongly. The normalized number of round clusters has a clear maximum, while $S_{1,R}/N_R$ and $\psi_R$ are small. My current interpretation is that this may be a geometric blocking regime: there is already little space available for elongation, but the round cells are still not dense enough to become strongly connected through our interaction criterion.
+
+This is also the density where different realizations behave very differently. Some remain almost completely round, while others develop a substantial elongated population, so this seems to be a region where several different structures can appear.
+
+At $\rho=0.87$, almost all cells remain round and the number of clusters decreases again. A possible explanation is that the higher density increases the number of contacts between round cells, joining the small components into larger ones. However, there is still no clearly dominant round cluster, as seen from the low values of $S_{1,R}/N_R$ and $\psi_R$.
+
+
+\subsection{Internal order of elongated clusters}
+
+The global polar and nematic order parameters studied before do not tell us whether the elongated clusters are internally ordered. A low global order could arise either because the clusters themselves are disordered or because different ordered clusters point in different directions.
+
+We therefore look at the polar and nematic order inside elongated clusters. Single-cell clusters are excluded, since their polar and nematic order are trivially equal to one.
+
+We compare the size-weighted mean order of the elongated clusters with the order of the largest elongated cluster.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{internal_order_of_elongated_clusters.png}
+\end{figure}
+
+The internal order of elongated clusters changes relatively little with density.
+
+The polar order remains around $0.6-0.7$ over most of the density range, both for the size-weighted average and for the largest cluster. This suggests that, whenever elongated clusters form, they remain internally quite ordered.
+
+The nematic order is somewhat lower, and the largest cluster is generally slightly less nematically ordered than the size-weighted average.
+
+Overall, the disappearance of the elongated state at high density does not seem to be caused by a progressive loss of internal cluster order. Instead, the main change appears to be the disappearance of the elongated population itself.
+
+The values at $\rho=0.87$ should be interpreted carefully, since very few elongated cells remain and the corresponding clusters are small.
+
+
+\subsection{Cluster motion}
+
+Finally, we look at how the motion of elongated clusters depends on their size.
+
+For each cluster $\mathcal{C}$, we distinguish between its collective speed,
+
+\[
+V_{\mathcal{C}}
+=
+\left|
+\frac{1}{|\mathcal{C}|}
+\sum_{i\in\mathcal{C}}
+\mathbf{v}_i
+\right|,
+\]
+
+and the mean speed of its cells,
+
+\[
+\overline{v}_{\mathcal{C}}
+=
+\frac{1}{|\mathcal{C}|}
+\sum_{i\in\mathcal{C}}
+|\mathbf{v}_i|.
+\]
+
+Their ratio,
+
+\[
+C_{\mathcal{C}}
+=
+\frac{V_{\mathcal{C}}}
+{\overline{v}_{\mathcal{C}}},
+\]
+
+gives a simple measure of motion coherence. Values close to one indicate that most of the cellular motion contributes to translation of the cluster, while smaller values indicate stronger cancellation of the individual cell velocities.
+
+We study how these quantities change with cluster size.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{elongated_cluster_motion_versus_size.png}
+\end{figure}
+
+The cluster motion shows a clear dependence on cluster size.
+
+For small elongated clusters, the collective speed $V_{\mathcal{C}}$ is relatively close to the mean cell speed $\overline{v}_{\mathcal{C}}$, giving a motion coherence $C_{\mathcal{C}}$ close to one.
+
+As the cluster size increases, the mean cell speed increases, while the collective speed remains smaller and changes much less. As a result, $C_{\mathcal{C}}$ decreases systematically with cluster size.
+
+This suggests that cells in large elongated clusters remain active, but an increasing part of their motion is internal and cancels when calculating the collective velocity. This could be related to curvature or internal variations of the direction of motion.
+
+Interestingly, this behavior is quite similar for the different densities considered here, suggesting that cluster size may be more important than density for the coherence of cluster motion.
+
+The largest-size bins should be interpreted carefully, since they contain fewer clusters.

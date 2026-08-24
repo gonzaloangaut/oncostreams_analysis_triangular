@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.17)  21 AUG 2026 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.17)  24 AUG 2026 12:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -319,24 +319,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -394,26 +394,26 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 16.
+Package hyperref Info: Link coloring OFF on input line 19.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (./sections/order_parameters.tex
-<../figures/order_parameters/order_parameters_over_time.png, id=28, 1290.2604pt
+<../figures/order_parameters/order_parameters_over_time.png, id=64, 1290.2604pt
  x 711.8595pt>
 File: ../figures/order_parameters/order_parameters_over_time.png Graphic file (
 type png)
@@ -424,7 +424,7 @@ Package pdftex.def Info: ../figures/order_parameters/order_parameters_over_time
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<../figures/order_parameters/steady_state_order_parameters.png, id=49, 1293.151
+<../figures/order_parameters/steady_state_order_parameters.png, id=85, 1293.151
 2pt x 711.8595pt>
 File: ../figures/order_parameters/steady_state_order_parameters.png Graphic fil
 e (type png)
@@ -433,7 +433,7 @@ Package pdftex.def Info: ../figures/order_parameters/steady_state_order_paramet
 ers.png  used on input line 123.
 (pdftex.def)             Requested size: 455.24411pt x 250.59921pt.
  [2 <../figures/order_parameters/order_parameters_over_time.png>]
-<../figures/order_parameters/susceptibility_of_elongated_fraction.png, id=56, 5
+<../figures/order_parameters/susceptibility_of_elongated_fraction.png, id=92, 5
 70.6921pt x 426.1521pt>
 File: ../figures/order_parameters/susceptibility_of_elongated_fraction.png Grap
 hic file (type png)
@@ -444,7 +444,7 @@ d_fraction.png  used on input line 151.
 
 [3 <../figures/order_parameters/steady_state_order_parameters.png>]
 <../figures/order_parameters/elongated_fraction_distributions_near_susceptibili
-ty_peak.png, id=66, 1076.5821pt x 286.671pt>
+ty_peak.png, id=102, 1076.5821pt x 286.671pt>
 File: ../figures/order_parameters/elongated_fraction_distributions_near_suscept
 ibility_peak.png Graphic file (type png)
 <use ../figures/order_parameters/elongated_fraction_distributions_near_suscepti
@@ -456,7 +456,7 @@ utions_near_susceptibility_peak.png  used on input line 165.
 figures/order_parameters/elongated_fraction_distributions_near_susceptibility_p
 eak.png>]
 <../figures/order_parameters/elongated_fraction_individual_seeds_rho_0.86.png, 
-id=75, 715.473pt x 426.1521pt>
+id=111, 715.473pt x 426.1521pt>
 File: ../figures/order_parameters/elongated_fraction_individual_seeds_rho_0.86.
 png Graphic file (type png)
 <use ../figures/order_parameters/elongated_fraction_individual_seeds_rho_0.86.p
@@ -465,37 +465,114 @@ Package pdftex.def Info: ../figures/order_parameters/elongated_fraction_individ
 ual_seeds_rho_0.86.png  used on input line 179.
 (pdftex.def)             Requested size: 409.71692pt x 244.03415pt.
 )
-[5 <../figures/order_parameters/elongated_fraction_individual_seeds_rho_0.86.pn
-g>] (./main.aux)
+(./sections/clusters.tex [5 <../figures/order_parameters/elongated_fraction_ind
+ividual_seeds_rho_0.86.png>]
+<../figures/clusters/largest_cluster_over_time.png, id=118, 1007.2029pt x 357.7
+365pt>
+File: ../figures/clusters/largest_cluster_over_time.png Graphic file (type png)
+
+<use ../figures/clusters/largest_cluster_over_time.png>
+Package pdftex.def Info: ../figures/clusters/largest_cluster_over_time.png  use
+d on input line 67.
+(pdftex.def)             Requested size: 455.24411pt x 161.68954pt.
+ [6 <../figures/clusters/largest_cluster_over_time.png>]
+<../figures/clusters/phenotype_abundance_and_cluster_connectivity_over_time.png
+, id=125, 1006.7211pt x 711.8595pt>
+File: ../figures/clusters/phenotype_abundance_and_cluster_connectivity_over_tim
+e.png Graphic file (type png)
+<use ../figures/clusters/phenotype_abundance_and_cluster_connectivity_over_time
+.png>
+Package pdftex.def Info: ../figures/clusters/phenotype_abundance_and_cluster_co
+nnectivity_over_time.png  used on input line 80.
+(pdftex.def)             Requested size: 455.24411pt x 321.90881pt.
+ [7 <../figures/clusters/phenotype_abundance_and_cluster_connectivity_over_time
+.png>]
+<../figures/clusters/largest_cluster_size.png, id=133, 570.2103pt x 426.1521pt>
+
+File: ../figures/clusters/largest_cluster_size.png Graphic file (type png)
+<use ../figures/clusters/largest_cluster_size.png>
+Package pdftex.def Info: ../figures/clusters/largest_cluster_size.png  used on 
+input line 114.
+(pdftex.def)             Requested size: 355.08984pt x 265.38852pt.
+<../figures/clusters/largest_cluster_dominance.png, id=134, 571.1739pt x 426.15
+21pt>
+File: ../figures/clusters/largest_cluster_dominance.png Graphic file (type png)
+
+<use ../figures/clusters/largest_cluster_dominance.png>
+Package pdftex.def Info: ../figures/clusters/largest_cluster_dominance.png  use
+d on input line 133.
+(pdftex.def)             Requested size: 355.08984pt x 264.93335pt.
+ [8 <../figures/clusters/largest_cluster_size.png>]
+<../figures/clusters/number_of_clusters_over_time.png, id=140, 1005.5166pt x 35
+7.7365pt>
+File: ../figures/clusters/number_of_clusters_over_time.png Graphic file (type p
+ng)
+<use ../figures/clusters/number_of_clusters_over_time.png>
+Package pdftex.def Info: ../figures/clusters/number_of_clusters_over_time.png  
+used on input line 154.
+(pdftex.def)             Requested size: 455.24411pt x 161.96248pt.
+ [9 <../figures/clusters/largest_cluster_dominance.png> <../figures/clusters/nu
+mber_of_clusters_over_time.png>]
+<../figures/clusters/late-time_cluster_fragmentation.png, id=147, 570.4512pt x 
+426.1521pt>
+File: ../figures/clusters/late-time_cluster_fragmentation.png Graphic file (typ
+e png)
+<use ../figures/clusters/late-time_cluster_fragmentation.png>
+Package pdftex.def Info: ../figures/clusters/late-time_cluster_fragmentation.pn
+g  used on input line 167.
+(pdftex.def)             Requested size: 355.08984pt x 265.27147pt.
+ [10 <../figures/clusters/late-time_cluster_fragmentation.png>]
+<../figures/clusters/internal_order_of_elongated_clusters.png, id=153, 860.013p
+t x 357.7365pt>
+File: ../figures/clusters/internal_order_of_elongated_clusters.png Graphic file
+ (type png)
+<use ../figures/clusters/internal_order_of_elongated_clusters.png>
+Package pdftex.def Info: ../figures/clusters/internal_order_of_elongated_cluste
+rs.png  used on input line 191.
+(pdftex.def)             Requested size: 455.24411pt x 189.36472pt.
+
+[11 <../figures/clusters/internal_order_of_elongated_clusters.png>]
+<../figures/clusters/elongated_cluster_motion_versus_size.png, id=159, 932.283p
+t x 357.4956pt>
+File: ../figures/clusters/elongated_cluster_motion_versus_size.png Graphic file
+ (type png)
+<use ../figures/clusters/elongated_cluster_motion_versus_size.png>
+Package pdftex.def Info: ../figures/clusters/elongated_cluster_motion_versus_si
+ze.png  used on input line 246.
+(pdftex.def)             Requested size: 455.24411pt x 174.57433pt.
+) [12 <../figures/clusters/elongated_cluster_motion_versus_size.png>] (./main.a
+ux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D26C61662904D203B27D59DEBD6F33D1;1321.
+(rerunfilecheck)             Checksum: 9605850A6C3AD9B0743C1E885260433B;3067.
  ) 
 Here is how much of TeX's memory you used:
- 10244 strings out of 474222
- 157250 string characters out of 5748732
+ 10357 strings out of 474222
+ 162091 string characters out of 5748732
  1938975 words of memory out of 5000000
- 32355 multiletter control sequences out of 15000+600000
- 565473 words of font info for 64 fonts, out of 8000000 for 9000
+ 32446 multiletter control sequences out of 15000+600000
+ 566402 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,426b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb>
-Output written on main.pdf (5 pages, 2233188 bytes).
+ 75i,6n,79p,509b,449s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+
+Output written on main.pdf (12 pages, 5462324 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 24 named destinations out of 1000 (max. 500000)
- 74 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 229 PDF objects out of 1000 (max. 8388607)
+ 163 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 186 words of extra memory for PDF output out of 10000 (max. 10000000)
 

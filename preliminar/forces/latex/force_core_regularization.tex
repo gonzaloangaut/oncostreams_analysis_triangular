@@ -18,7 +18,7 @@
     right=2.5cm
 }
 
-\title{Regularización del núcleo repulsivo en el modelo de oncostreams}
+\title{Problemas con la fuerza original y propuesta de regularización}
 \author{}
 \date{}
 
@@ -79,7 +79,7 @@ donde, recordemos:
 
 que cumple $0<\xi_{ij}\leq1$.
 
-Acá está lo interesante, creería yo. El $\mathcal{F}[\xi_{ij}]$ es una función que aparece en la energía de intereacción binaria:
+Lo interesante está en la elección de $\mathcal{F}[\xi_{ij}]$, que es una función que aparece en la energía de intereacción binaria:
 
 \begin{equation}
 	u_{ij}
@@ -227,9 +227,9 @@ Para $\gamma=1$ y $\gamma=3$,
 \simeq0.846.
 \end{equation}
 
-En consecuencia, para $\gamma=1$ la rama decreciente comienza a una superposición considerablemente menor que para $\gamma=3$, algo que es raro ya que parecía que $\gamma=1$ era el máximos de la fuerza. 
+En consecuencia, para $\gamma=1$ la rama decreciente comienza a una superposición considerablemente menor que para $\gamma=3$, algo que es raro ya que parecía que $\gamma=1$ era el máximo de la fuerza. 
 
-Las superposiciones a las que esto pasa son altas, por lo que en sistemas diluidos no parece haber problemas, pero en puntos donde la presión es muy alta, esta superposición sí se puede "vencer" y luego las células se terminan uniendo como vemos en las simulaciones.
+Las superposiciones a las que esto pasa son altas, por lo que en sistemas diluidos o más "estándar" no parece haber problemas, pero en puntos donde la presión es muy alta, esta superposición sí se puede "vencer" y luego las células se terminan uniendo como vemos en las simulaciones.
 
 \subsection{¿Es $\gamma=1$ más rígido?}
 
@@ -275,7 +275,7 @@ y lo mismo para $\left|\mathbf C_{ij}\cdot\hat{\mathbf n}\right|$. Entonces la e
 	r\exp\left(-\frac{\gamma r^2}{4R^{2}}\right).
 \end{equation}
 
-Esta fuerza está graficada en la figura \ref{fig:gamma_dependence}. En el primer panel se ve la dependencia con $\gamma$ para una distancia fija $r=2R$, mientras que en el segundo panel se ve la dependencia con la distancia entre centros, tanto para $\gamma=1$ y $\gamma=3$.
+Esta fuerza está graficada en la figura \ref{fig:gamma_dependence}. En el primer panel se ve la dependencia con $\gamma$ para una distancia fija $r=2R$, mientras que en el segundo panel se ve la dependencia con la distancia entre centros, tanto para $\gamma=1$ y $\gamma=3$. Para el caso del primer panel, se ve que $\gamma=1$ es el máximo, como ya habíamos visto. Sin embargo, en el segundo panel vemos que eso sólo pasa cuando las células se separan por esa distancia. En este panel también se puede ver cómo la fuerza decrece cuando la superposición es lo suficientemente alta.
 
 \begin{figure}[htbp]
     \centering
@@ -368,10 +368,10 @@ u_{ij}^{(\lambda=1)}
 =-k\ln\left(1-\xi_{ij}^{\gamma}\right).
 \end{equation}
 
-Para $\xi_{ij}\ll1$,
+Para cualquier $\lambda$ en el límite $\xi_{ij}\ll1$,
 
 \begin{equation}
-	-k\ln\left(1-\xi_{ij}^{\gamma}\right) \approx -k\left(\xi_{ij}+\frac{\xi_{ij}^{2}}{2}+\frac{\xi_{ij}^{3}}{3}+...\right)
+	\ln\left(1-\xi_{ij}^{\gamma}\right) \approx -\left(\xi_{ij}+\frac{\xi_{ij}^{2}}{2}+\frac{\xi_{ij}^{3}}{3}+...\right)
 \end{equation}
 
 Por lo tanto,
@@ -576,7 +576,7 @@ Por lo tanto, la fuerza deja de anularse y diverge como $1/s$.
 
 \subsection{Criterio para elegir \texorpdfstring{$\lambda$}{lambda}}
 
-Ahora, notemos en la figura \ref{fig:round_regularization} que pasa algo peculiar. Si $\lambda$ es muy chico, entonces se va a $\infty$ en el origen pero decrece un poco después del máximo.
+Ahora, notemos en la figura \ref{fig:round_regularization} que pasa algo peculiar. Si $\lambda$ es muy chico, entonces se va a $\infty$ en el origen pero decrece un poco después del máximo de la fuerza original.
 
 Para que la fuerza aumente monótonamente cuando las células se aproximan,
 debe cumplirse
@@ -667,6 +667,8 @@ Esta función puede verse en la figura \ref{fig:monotonicity_threshold} y el pun
 \end{equation}
 
 Este umbral es independiente de $\gamma$, de la relación de aspecto y de la dirección de aproximación, ya que estas cantidades solamente modifican la escala utilizada para definir $x$.
+
+Por lo tanto, siempre que elijamos un $\lambda>\lambda_c$, estamos seguros de que la fuerza va a crecer siempre que las células se acerquen.
 
 \begin{figure}[htbp]
     \centering

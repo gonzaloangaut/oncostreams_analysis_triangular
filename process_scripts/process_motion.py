@@ -40,6 +40,7 @@ MOTION_COLUMNS = [
     "mean_step_displacement",
     "mean_squared_step_displacement",
     "p95_step_displacement",
+    "max_step_displacement",
     "msd_t0",
 ]
 

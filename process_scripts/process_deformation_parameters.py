@@ -35,6 +35,43 @@ FIELD_PATTERN = re.compile(
 
 STEP_PATTERN = re.compile(r"_step=(\d+)\.dat$")
 
+# Columns identifying one simulation snapshot within this parameter sweep
+SNAPSHOT_KEYS = [
+    "N",
+    "reference_N",
+    "actual_N",
+    "rho",
+    "actual_rho",
+    "initial_fraction_elongated",
+    "force",
+    "seed",
+    "step",
+]
+
+
+def parse_force_parameters(force_name: str) -> dict:
+    """Extract numeric parameters without modifying the full force name."""
+    number_pattern = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?"
+
+    parameters = {}
+
+    for column, token in (
+        ("kappa", "k"),
+        ("lambda_core", "lambda_core"),
+    ):
+        match = re.search(
+            rf"(?:^|_){token}=({number_pattern})(?=_|$)",
+            force_name,
+        )
+
+        # Missing parameters remain unknown rather than assuming a default
+        parameters[column] = (
+            float(match.group(1))
+            if match is not None
+            else float("nan")
+        )
+
+    return parameters
 
 # Columns that should be present in every deformation file
 DEFORMATION_COUNT_COLUMNS = [
@@ -126,6 +163,8 @@ def parse_metadata(filename: str) -> dict:
             f"{filename}"
         )
 
+    force_name = fields.get("force", "")
+
     return {
         "N": int(requested_n),
         "reference_N": int(reference_n),
@@ -135,7 +174,8 @@ def parse_metadata(filename: str) -> dict:
         "seed": seed,
         "step": step,
         "initial_fraction_elongated": float(initial_fraction_elongated),
-        "force": fields.get("force", ""),
+        "force": force_name,
+        **parse_force_parameters(force_name),
     }
 
 
@@ -241,7 +281,7 @@ def validate_deformation(data: pd.DataFrame) -> None:
     """Perform consistency checks on the deformation intervals."""
 
     duplicated = data.duplicated(
-        subset=["N", "rho", "seed", "step"],
+        subset=SNAPSHOT_KEYS,
     ).sum()
 
     step_mismatches = int(
@@ -295,7 +335,7 @@ def validate_deformation(data: pd.DataFrame) -> None:
 
     print("\nSanity checks:")
     print(
-        "Duplicated (N, rho, seed, step) rows:",
+        "Duplicated simulation-snapshot rows:",
         duplicated,
     )
     print(
@@ -393,7 +433,11 @@ def main() -> None:
 
     sort_columns = [
         "N",
+        "lambda_core",
+        "kappa",
         "rho",
+        "force",
+        "initial_fraction_elongated",
         "seed",
         "step",
     ]

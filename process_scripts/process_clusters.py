@@ -34,6 +34,44 @@ FIELD_PATTERN = re.compile(
 
 STEP_PATTERN = re.compile(r"_step=(\d+)\.dat$")
 
+# Columns identifying one simulation snapshot within this parameter sweep
+SNAPSHOT_KEYS = [
+    "N",
+    "reference_N",
+    "actual_N",
+    "rho",
+    "actual_rho",
+    "initial_fraction_elongated",
+    "force",
+    "seed",
+    "step",
+]
+
+
+def parse_force_parameters(force_name: str) -> dict:
+    """Extract numeric parameters without modifying the full force name."""
+    number_pattern = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?"
+
+    parameters = {}
+
+    for column, token in (
+        ("kappa", "k"),
+        ("lambda_core", "lambda_core"),
+    ):
+        match = re.search(
+            rf"(?:^|_){token}=({number_pattern})(?=_|$)",
+            force_name,
+        )
+
+        # Missing parameters remain unknown rather than assuming a default
+        parameters[column] = (
+            float(match.group(1))
+            if match is not None
+            else float("nan")
+        )
+
+    return parameters
+
 # Create a function to extract the information
 def parse_metadata(filename: str) -> dict:
     """Extract the simulation metadata encoded in an output filename."""
@@ -90,6 +128,8 @@ def parse_metadata(filename: str) -> dict:
             f"{filename}"
         )
 
+    force_name = fields.get("force", "")
+
     return {
         "N": int(requested_n),
         "reference_N": int(reference_n),
@@ -99,7 +139,8 @@ def parse_metadata(filename: str) -> dict:
         "seed": seed,
         "step": step,
         "initial_fraction_elongated": float(initial_fraction_elongated),
-        "force": fields.get("force", ""),
+        "force": force_name,
+        **parse_force_parameters(force_name),
     }
 
 # Create a function to add data to a table
@@ -119,6 +160,8 @@ def add_metadata(data: pd.DataFrame, metadata: dict) -> pd.DataFrame:
         "step",
         "initial_fraction_elongated",
         "force",
+        "kappa",
+        "lambda_core",
     ]
 
     other_columns = [
@@ -379,15 +422,7 @@ def merge_raw_observables_into_time_series(
     if time_series.empty or snapshots.empty:
         return time_series
 
-    merge_keys = [
-        "N",
-        "rho",
-        "seed",
-        "step",
-        "phenotype",
-        "initial_fraction_elongated",
-        "force",
-    ]
+    merge_keys = SNAPSHOT_KEYS + ["phenotype"]
 
     raw_columns = merge_keys + [
         "S2",
@@ -404,6 +439,7 @@ def merge_raw_observables_into_time_series(
         snapshots[raw_columns],
         on=merge_keys,
         how="left",
+        validate="one_to_one",
     )
 
 # Finally, the main function
@@ -471,7 +507,11 @@ def main() -> None:
 
     sort_columns = [
         "N",
+        "lambda_core",
+        "kappa",
         "rho",
+        "force",
+        "initial_fraction_elongated",
         "seed",
         "step",
         "phenotype",

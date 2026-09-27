@@ -1,0 +1,16 @@
+{
+  "signature": "e27dcaff481ed76f6da9eda9bc1df03bbbe9b69b281a22c689007a177904d589",
+  "settings": {
+    "algorithm_version": 1,
+    "delta_t": 0.05,
+    "final_step": 30000,
+    "xi_cut": 0.36787944117144233,
+    "range_factors": [
+      1.0,
+      1.1,
+      1.2
+    ],
+    "polar_angle_deg": 45.0,
+    "connectivity_step": 100
+  }
+}

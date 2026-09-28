@@ -1,0 +1,18 @@
+[
+  "01_final_configurations_lambda_0p1_seed_853827592514924",
+  "01_final_configurations_lambda_0p1_seed_1099062448631258",
+  "01_final_configurations_lambda_0p25_seed_853827592514924",
+  "01_final_configurations_lambda_0p25_seed_1099062448631258",
+  "01_final_configurations_lambda_1_seed_853827592514924",
+  "01_final_configurations_lambda_1_seed_1099062448631258",
+  "02_elongated_fraction_timeseries",
+  "03_nematic_order_timeseries",
+  "04_polar_order_timeseries",
+  "05_late_time_order_density",
+  "06_final_connectivity_C_E",
+  "07_final_connectivity_G_E",
+  "08_component_maps_lambda_0p25_seed_853827592514924",
+  "08_component_maps_lambda_0p25_seed_1099062448631258",
+  "08_component_maps_lambda_1_seed_853827592514924",
+  "08_component_maps_lambda_1_seed_1099062448631258"
+]

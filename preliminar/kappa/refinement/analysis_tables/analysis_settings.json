@@ -18,17 +18,22 @@
   "round_atol": 1e-08,
   "time_windows": [
     [
-      250,
-      500
+      600.0,
+      900.0
     ],
     [
-      750,
-      1000
+      900.0,
+      1200.0
     ],
     [
-      1250,
-      1500
+      1200.0,
+      1500.0
     ]
+  ],
+  "summary_fraction": 0.2,
+  "summary_window": [
+    1200.0,
+    1500.0
   ],
   "densities": [
     0.7,
@@ -43,11 +48,13 @@
     1052030010736714,
     1099062448631258
   ],
+  "expected_realizations": 4,
   "kappa": 2.5,
   "lambda_core": 1.0,
   "xi_safe": 0.8,
   "cluster_smoothing_time": 25.0,
   "smoothing_used_for_statistics": false,
-  "ensemble_error_bars": "sample_standard_deviation_between_realizations",
-  "expected_N": 1000
+  "expected_N": 1000,
+  "include_deformation_diagnostics": false,
+  "ensemble_error_bars": "sample_standard_deviation_between_realizations"
 }

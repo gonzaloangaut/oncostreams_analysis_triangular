@@ -1,5 +1,5 @@
 {
-  "algorithm_version": 1,
+  "algorithm_version": 2,
   "delta_t": 0.05,
   "final_step": 30000,
   "xi_cut": 0.36787944117144233,
@@ -10,6 +10,12 @@
   ],
   "polar_angle_deg": 45.0,
   "connectivity_step": 100,
+  "populations": [
+    "elongated",
+    "round"
+  ],
+  "round_rtol": 1e-05,
+  "round_atol": 1e-08,
   "time_windows": [
     [
       250,
@@ -39,5 +45,9 @@
   ],
   "kappa": 2.5,
   "lambda_core": 1.0,
-  "xi_safe": 0.8
+  "xi_safe": 0.8,
+  "cluster_smoothing_time": 25.0,
+  "smoothing_used_for_statistics": false,
+  "ensemble_error_bars": "sample_standard_deviation_between_realizations",
+  "expected_N": 1000
 }

@@ -1,3 +1,4 @@
 data/clusters/cluster_raw.parquet
 preliminar/validation_data/
 preliminar/forces/xi_safe/data/
+preliminar/kappa/refinement/ovito/

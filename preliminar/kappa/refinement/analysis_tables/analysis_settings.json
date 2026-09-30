@@ -1,5 +1,5 @@
 {
-  "algorithm_version": 2,
+  "algorithm_version": 3,
   "delta_t": 0.05,
   "final_step": 50000,
   "xi_cut": 0.36787944117144233,

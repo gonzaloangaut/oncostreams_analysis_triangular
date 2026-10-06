@@ -35,6 +35,37 @@ FIELD_PATTERN = re.compile(
 
 STEP_PATTERN = re.compile(r"_step=(\d+)\.dat$")
 
+DELTA_T_DIR_PATTERN = re.compile(
+    r"^(?:delta_t_)?0_(?P<fraction>\d+)(?:_\d+)?$"
+)
+
+
+def resolve_delta_t(
+    filepath: Path,
+    fallback: float | None = None,
+) -> float:
+    """Infer delta_t from a parent directory such as 0_025_1.
+
+    If no such directory is present, ``fallback`` can be supplied through
+    the command-line ``--delta-t`` option.
+    """
+    for part in reversed(filepath.parent.parts):
+        match = DELTA_T_DIR_PATTERN.fullmatch(part)
+        if match is not None:
+            return float(f"0.{match.group('fraction')}")
+
+    if fallback is not None:
+        if fallback <= 0:
+            raise ValueError("delta_t must be positive.")
+        return float(fallback)
+
+    raise ValueError(
+        "Could not infer delta_t from the directory tree for "
+        f"{filepath}. Expected a directory such as 0_1, 0_05, "
+        "0_025_1, or 0_01_2. Alternatively pass --delta-t."
+    )
+
+
 # Columns identifying one simulation snapshot within this parameter sweep
 SNAPSHOT_KEYS = [
     "N",
@@ -45,6 +76,7 @@ SNAPSHOT_KEYS = [
     "initial_fraction_elongated",
     "force",
     "seed",
+    "delta_t",
     "step",
 ]
 
@@ -78,11 +110,16 @@ OVERLAP_COLUMNS = [
     "tic_end",
     "number_of_steps",
     "max_normalized_overlap",
+    "mean_normalized_overlap",
 ]
 
 
-def parse_metadata(filename: str) -> dict:
+def parse_metadata(
+    filepath: Path,
+    delta_t_fallback: float | None = None,
+) -> dict:
     """Extract simulation metadata encoded in an output filename."""
+    filename = filepath.name
 
     step_match = STEP_PATTERN.search(filename)
 
@@ -145,6 +182,7 @@ def parse_metadata(filename: str) -> dict:
         )
 
     force_name = fields.get("force", "")
+    delta_t = resolve_delta_t(filepath, fallback=delta_t_fallback)
     return {
         "N": int(requested_n),
         "reference_N": int(reference_n),
@@ -153,16 +191,24 @@ def parse_metadata(filename: str) -> dict:
         "actual_rho": float(actual_rho),
         "seed": seed,
         "step": step,
+        "delta_t": delta_t,
+        "time": step * delta_t,
         "initial_fraction_elongated": float(initial_fraction_elongated),
         "force": force_name,
         **parse_force_parameters(force_name),
     }
 
 
-def process_overlap_file(filepath: Path) -> dict:
+def process_overlap_file(
+    filepath: Path,
+    delta_t_fallback: float | None = None,
+) -> dict:
     """Read one overlap interval and return one processed row."""
 
-    metadata = parse_metadata(filepath.name)
+    metadata = parse_metadata(
+        filepath,
+        delta_t_fallback=delta_t_fallback,
+    )
 
     data = pd.read_csv(
         filepath,
@@ -196,11 +242,20 @@ def process_overlap_file(filepath: Path) -> dict:
         "max_normalized_overlap": float(
             row["max_normalized_overlap"]
         ),
+        "mean_normalized_overlap": float(
+            row["mean_normalized_overlap"]
+        ),
+        "time_start": int(row["tic_start"]) * metadata["delta_t"],
+        "time_end": int(row["tic_end"]) * metadata["delta_t"],
+        "interval_duration": (
+            int(row["number_of_steps"]) * metadata["delta_t"]
+        ),
     }
 
 
 def process_overlap_files(
     overlap_files: list[Path],
+    delta_t_fallback: float | None = None,
 ) -> pd.DataFrame:
     """Combine all overlap intervals into one DataFrame."""
 
@@ -208,7 +263,10 @@ def process_overlap_files(
 
     for index, filepath in enumerate(overlap_files, start=1):
         rows.append(
-            process_overlap_file(filepath)
+            process_overlap_file(
+                filepath,
+                delta_t_fallback=delta_t_fallback,
+            )
         )
 
         if index % 1000 == 0 or index == len(overlap_files):
@@ -259,6 +317,25 @@ def validate_overlap(data: pd.DataFrame) -> None:
         (~np.isfinite(data["max_normalized_overlap"])).sum()
     )
 
+    negative_mean_overlaps = int(
+        (data["mean_normalized_overlap"] < 0).sum()
+    )
+
+    mean_overlaps_above_one = int(
+        (data["mean_normalized_overlap"] > 1 + 1e-12).sum()
+    )
+
+    nonfinite_mean_overlaps = int(
+        (~np.isfinite(data["mean_normalized_overlap"])).sum()
+    )
+
+    mean_above_max = int(
+        (
+            data["mean_normalized_overlap"]
+            > data["max_normalized_overlap"] + 1e-12
+        ).sum()
+    )
+
     print("\nSanity checks:")
     print(
         "Duplicated simulation-snapshot rows:",
@@ -284,6 +361,22 @@ def validate_overlap(data: pd.DataFrame) -> None:
         "Non-finite maximum normalized overlaps:",
         nonfinite_overlaps,
     )
+    print(
+        "Negative mean normalized overlaps:",
+        negative_mean_overlaps,
+    )
+    print(
+        "Mean normalized overlaps above one:",
+        mean_overlaps_above_one,
+    )
+    print(
+        "Non-finite mean normalized overlaps:",
+        nonfinite_mean_overlaps,
+    )
+    print(
+        "Rows where mean overlap exceeds maximum overlap:",
+        mean_above_max,
+    )
 
 
 def main() -> None:
@@ -307,6 +400,16 @@ def main() -> None:
         help=(
             "Output directory. Default: "
             "<data_root>/processed/overlap"
+        ),
+    )
+
+    parser.add_argument(
+        "--delta-t",
+        type=float,
+        default=None,
+        help=(
+            "Fallback integration timestep when it cannot be inferred "
+            "from a parent directory such as 0_05 or 0_025_1."
         ),
     )
 
@@ -339,13 +442,15 @@ def main() -> None:
         )
 
     overlap = process_overlap_files(
-        overlap_files
+        overlap_files,
+        delta_t_fallback=args.delta_t,
     )
 
     sort_columns = [
         "N",
         "lambda_core",
         "kappa",
+        "delta_t",
         "rho",
         "force",
         "initial_fraction_elongated",

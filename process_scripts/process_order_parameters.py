@@ -32,6 +32,37 @@ FIELD_PATTERN = re.compile(
 
 STEP_PATTERN = re.compile(r"_step=(\d+)\.dat$")
 
+DELTA_T_DIR_PATTERN = re.compile(
+    r"^(?:delta_t_)?0_(?P<fraction>\d+)(?:_\d+)?$"
+)
+
+
+def resolve_delta_t(
+    filepath: Path,
+    fallback: float | None = None,
+) -> float:
+    """Infer delta_t from a parent directory such as 0_025_1.
+
+    If no such directory is present, ``fallback`` can be supplied through
+    the command-line ``--delta-t`` option.
+    """
+    for part in reversed(filepath.parent.parts):
+        match = DELTA_T_DIR_PATTERN.fullmatch(part)
+        if match is not None:
+            return float(f"0.{match.group('fraction')}")
+
+    if fallback is not None:
+        if fallback <= 0:
+            raise ValueError("delta_t must be positive.")
+        return float(fallback)
+
+    raise ValueError(
+        "Could not infer delta_t from the directory tree for "
+        f"{filepath}. Expected a directory such as 0_1, 0_05, "
+        "0_025_1, or 0_01_2. Alternatively pass --delta-t."
+    )
+
+
 # Columns identifying one simulation snapshot within this parameter sweep
 SNAPSHOT_KEYS = [
     "N",
@@ -42,6 +73,7 @@ SNAPSHOT_KEYS = [
     "initial_fraction_elongated",
     "force",
     "seed",
+    "delta_t",
     "step",
 ]
 
@@ -80,8 +112,12 @@ ORDER_PARAMETER_COLUMNS = [
 ]
 
 # Create a function to extract the information
-def parse_metadata(filename: str) -> dict:
+def parse_metadata(
+    filepath: Path,
+    delta_t_fallback: float | None = None,
+) -> dict:
     """Extract simulation metadata encoded in an output filename."""
+    filename = filepath.name
 
     # Get the step
     step_match = STEP_PATTERN.search(filename)
@@ -150,6 +186,7 @@ def parse_metadata(filename: str) -> dict:
         )
 
     force_name = fields.get("force", "")
+    delta_t = resolve_delta_t(filepath, fallback=delta_t_fallback)
     return {
         "N": int(requested_n),
         "reference_N": int(reference_n),
@@ -158,20 +195,28 @@ def parse_metadata(filename: str) -> dict:
         "actual_rho": float(actual_rho),
         "seed": seed,
         "step": step,
+        "delta_t": delta_t,
+        "time": step * delta_t,
         "initial_fraction_elongated": float(initial_fraction_elongated),
         "force": force_name,
         **parse_force_parameters(force_name),
     }
 
 # Process one order-parameter file
-def process_order_parameter_file(filepath: Path) -> dict:
+def process_order_parameter_file(
+    filepath: Path,
+    delta_t_fallback: float | None = None,
+) -> dict:
     """
     Read one order-parameter snapshot and return one row containing
     simulation metadata and global order parameters.
     """
 
     # Get the metadata from the filename
-    metadata = parse_metadata(filepath.name)
+    metadata = parse_metadata(
+        filepath,
+        delta_t_fallback=delta_t_fallback,
+    )
 
     data = pd.read_csv(
         filepath,
@@ -211,6 +256,7 @@ def process_order_parameter_file(filepath: Path) -> dict:
 # Process all files
 def process_order_parameter_files(
     op_files: list[Path],
+    delta_t_fallback: float | None = None,
 ) -> pd.DataFrame:
     """Combine all order-parameter snapshots into one DataFrame."""
 
@@ -219,7 +265,10 @@ def process_order_parameter_files(
     for index, filepath in enumerate(op_files, start=1):
 
         rows.append(
-            process_order_parameter_file(filepath)
+            process_order_parameter_file(
+                filepath,
+                delta_t_fallback=delta_t_fallback,
+            )
         )
 
         if index % 1000 == 0 or index == len(op_files):
@@ -333,6 +382,16 @@ def main() -> None:
         ),
     )
 
+    parser.add_argument(
+        "--delta-t",
+        type=float,
+        default=None,
+        help=(
+            "Fallback integration timestep when it cannot be inferred "
+            "from a parent directory such as 0_05 or 0_025_1."
+        ),
+    )
+
     args = parser.parse_args()
 
     data_root = args.data_root.expanduser().resolve()
@@ -364,7 +423,8 @@ def main() -> None:
 
     # Process data
     order_parameters = process_order_parameter_files(
-        op_files
+        op_files,
+        delta_t_fallback=args.delta_t,
     )
 
     # Sort data
@@ -372,6 +432,7 @@ def main() -> None:
         "N",
         "lambda_core",
         "kappa",
+        "delta_t",
         "rho",
         "force",
         "initial_fraction_elongated",

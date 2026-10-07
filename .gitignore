@@ -2,3 +2,5 @@ data/clusters/cluster_raw.parquet
 preliminar/validation_data/
 preliminar/forces/xi_safe/data/
 preliminar/kappa/refinement/ovito/
+preliminar/delta_t/ovito_final/
+preliminar/delta_t/processed/

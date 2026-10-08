@@ -1,5 +1,7 @@
 # **oncostreams_analysis_triangular**
 
+> **Historical analysis repository.** This repository preserves earlier analyses of the oncostreams model. Current numerical validation and analysis are maintained in [oncostreams_model_analysis](https://github.com/gonzaloangaut/oncostreams_model_analysis).
+
 This repository contains tools for analyzing the results of oncostream simulations initialized with all cells in a round state and arranged on a triangular lattice.
 
 The complete simulation data—including final states, OVITO files, and evolution movies—are available in the following Google Drive folder:
